@@ -18,6 +18,7 @@
 		3DB70B512475D167976881FA /* libPods-ReactNativeSampleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37596E99BC2EAB5CC877932D /* libPods-ReactNativeSampleApp.a */; };
 		5E1A42132A8B9098694744C2 /* libPods-ReactNativeSampleApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 824D8F76944D42C9AFCCA3E7 /* libPods-ReactNativeSampleApp-tvOS.a */; };
 		6898CE9E52172F3B2F1C9FD1 /* libPods-ReactNativeSampleApp-ReactNativeSampleAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD79F10EF9179F1017AE4250 /* libPods-ReactNativeSampleApp-ReactNativeSampleAppTests.a */; };
+		73E8401425C0E1D100B3D9EE /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B0F7C9B30F4A9E97855362A2 /* libPods-ReactNativeSampleApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD14E0607AF45AB98D8C3A7 /* libPods-ReactNativeSampleApp-tvOSTests.a */; };
 /* End PBXBuildFile section */
@@ -161,7 +162,6 @@
 				70D08FF7AE11EAA5699C3A3E /* Pods-ReactNativeSampleApp-tvOSTests.debug.xcconfig */,
 				C6129590676A8C3F5F47304E /* Pods-ReactNativeSampleApp-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -340,6 +340,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73E8401425C0E1D100B3D9EE /* main.jsbundle in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
