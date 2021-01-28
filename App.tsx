@@ -6,12 +6,14 @@ import {
   Text,
   View,
   FlatList,
+  TouchableOpacity,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {BlurView} from '@react-native-community/blur';
 import Modal from 'react-native-modal';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 declare const global: {HermesInternal: null | {}};
 
@@ -29,7 +31,7 @@ const App = () => {
         <BlurView
           blurAmount={1}
           blurType="light"
-          style={{width: '90%', height: 'auto', borderRadius: 10}}>
+          style={{width: '90%', height: 'auto', borderRadius: 30}}>
           <FlatList
             showsVerticalScrollIndicator={false}
             style={{width: '100%', padding: '2%'}}
@@ -59,11 +61,30 @@ const App = () => {
               return (
                 <View
                   style={{
+                    width: '100%',
                     padding: 10,
-                    justifyContent: 'center',
+                    flexDirection: 'row',
+                    //justifyContent: 'center',
                     alignItems: 'center',
                   }}>
-                  <Text style={{color: '#FFF', fontSize: 24}}>Some Text</Text>
+                    <View style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'center'}}
+                      >
+                    <TouchableOpacity style={{borderColor: '#E84557', borderWidth: 2, borderRadius: 10, padding: 8, marginRight: '1%'}}>
+                      <Icon name="minus" style={{color: '#E84557', fontSize: 16 }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{borderColor: '#65B54D', borderWidth: 2, borderRadius: 10, padding: 8, marginLeft: '1%'}}>
+                      <Icon name="plus" style={{color: '#65B54D', fontSize: 16}} />
+                    </TouchableOpacity>
+                    </View>
+                    <View style={{
+                      marginLeft: '2%',
+                      width: '100%'
+                    }}>
+                      <Text style={{color: '#FFF', fontSize: 24}}>Some Text(0/1)</Text>
+                    </View>
                 </View>
               );
             }}
