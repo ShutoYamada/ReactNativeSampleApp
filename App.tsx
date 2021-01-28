@@ -13,7 +13,7 @@ const App = () => {
     <LinearGradient
       start={{x: 0, y: 0.75}}
       end={{x: 1, y: 0.25}}
-      colors={['#FFFF00', '#FFA500', '#F14444', '#D53567', '#9A109A']}
+      colors={['#9890e3', '#f093fb']}
       style={{height: '100%'}}>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView
