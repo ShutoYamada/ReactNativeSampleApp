@@ -1,5 +1,12 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, StatusBar, Text, View} from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  StatusBar,
+  Text,
+  View,
+  FlatList,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {BlurView} from '@react-native-community/blur';
 import Modal from 'react-native-modal';
@@ -17,11 +24,54 @@ const App = () => {
       style={{height: '100%'}}>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView
-        style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text style={{color: '#FFF', fontSize: 24}}>Some Text</Text>
+        // eslint-disable-next-line react-native/no-inline-styles
+        style={{flex: 1, alignItems: 'center'}}>
+        <BlurView
+          blurAmount={1}
+          blurType="light"
+          style={{width: '90%', height: 'auto', borderRadius: 10}}>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            style={{width: '100%', padding: '2%'}}
+            data={[
+              'a',
+              'b',
+              'c',
+              'd',
+              'e',
+              'f',
+              'g',
+              'h',
+              'i',
+              'j',
+              'k',
+              'l',
+              /*
+              'm',
+              'n',
+              'o',
+              'p',
+              'q',
+              */
+            ]}
+            keyExtractor={(d) => d}
+            renderItem={() => {
+              return (
+                <View
+                  style={{
+                    padding: 10,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Text style={{color: '#FFF', fontSize: 24}}>Some Text</Text>
+                </View>
+              );
+            }}
+          />
+        </BlurView>
       </SafeAreaView>
       <Modal
-        isVisible={true}
+        isVisible={false}
         hasBackdrop={false}
         style={{alignItems: 'center'}}>
         <BlurView
