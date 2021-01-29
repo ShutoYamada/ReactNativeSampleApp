@@ -12,6 +12,7 @@ import {BlurView} from '@react-native-community/blur';
 import Modal from 'react-native-modal';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {Fab} from './modules/Commons';
 import {Task, TaskCard} from './modules/Tasks';
 
 declare const global: {HermesInternal: null | {}};
@@ -24,7 +25,14 @@ const App = () => {
     {name: 'Some Task4', checked: true},
     {name: 'Some Task5', checked: true},
     {name: 'Some Task6', checked: false},
-    {name: 'Some Task7', checked: true},
+    {name: 'Some Task8', checked: true},
+    {name: 'Some Task9', checked: true},
+    {name: 'Some Task10', checked: true},
+    {name: 'Some Task11', checked: true},
+    {name: 'Some Task12', checked: true},
+    {name: 'Some Task13', checked: true},
+    {name: 'Some Task14', checked: true},
+    {name: 'Some Task15', checked: true},
   ];
 
   return (
@@ -38,7 +46,7 @@ const App = () => {
         <View style={{width: '90%', height: 'auto'}}>
           <FlatList
             showsVerticalScrollIndicator={false}
-            style={{width: '100%', padding: '2%'}}
+            style={{width: '100%', height: '100%', padding: '2%'}}
             data={data}
             keyExtractor={(d) => d.name}
             renderItem={(item) => {
@@ -47,6 +55,7 @@ const App = () => {
             }}
           />
         </View>
+        <Fab />
       </SafeAreaView>
       <Modal
         isVisible={false}
