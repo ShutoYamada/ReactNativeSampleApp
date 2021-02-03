@@ -9,11 +9,10 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {BlurView} from '@react-native-community/blur';
-import Modal from 'react-native-modal';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {Fab} from './modules/Commons';
-import {Task, TaskCard} from './modules/Tasks';
+import {Task, TaskCard, TaskModal} from './modules/Tasks';
 
 declare const global: {HermesInternal: null | {}};
 
@@ -57,22 +56,7 @@ const App = () => {
         </View>
         <Fab />
       </SafeAreaView>
-      <Modal
-        isVisible={false}
-        hasBackdrop={false}
-        style={{alignItems: 'center'}}>
-        <BlurView
-          blurAmount={1}
-          blurType="light"
-          style={{
-            width: 300,
-            height: 100,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Text style={{color: '#333', fontSize: 24}}>Overlay Text</Text>
-        </BlurView>
-      </Modal>
+      <TaskModal />
     </LinearGradient>
   );
 };
