@@ -1,10 +1,12 @@
 import React from 'react';
+import {Provider} from 'react-redux';
 import {
   SafeAreaView,
   StatusBar,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {Fab} from './modules/Commons';
+import store from './Store';
 import {Task, TaskModal, TaskList} from './modules/Tasks';
 
 const App: React.FC = () => {
@@ -26,6 +28,7 @@ const App: React.FC = () => {
   ];
 
   return (
+    <Provider store={store}>
     <LinearGradient
       start={{x: 0, y: 0.75}}
       end={{x: 1, y: 0.25}}
@@ -38,6 +41,7 @@ const App: React.FC = () => {
       </SafeAreaView>
       <TaskModal />
     </LinearGradient>
+    </Provider>
   );
 };
 
