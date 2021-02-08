@@ -1,8 +1,10 @@
 import React from 'react';
+import { shallowEqual, useSelector } from 'react-redux'
 import styled from 'styled-components/native';
 import Modal from 'react-native-modal';
 import {BlurView} from '@react-native-community/blur';
 import {InactiveColor} from '../../../constants';
+import {RootState} from '../../../Store';
 
 const BlurContent = styled(BlurView)`
   width: 90%;
@@ -20,8 +22,11 @@ const Text = styled.Text`
 type Props = {};
 
 const TaskModal: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
+
+  const dispModal: boolean = useSelector((state: RootState) => state?.task?.dispModal);
+
   return (
-    <Modal isVisible={false} hasBackdrop={false} style={{alignItems: 'center'}}>
+    <Modal isVisible={dispModal} hasBackdrop={false} style={{alignItems: 'center'}}>
       <BlurContent blurAmount={8} blurType="light">
         <Text>Overlay Text</Text>
       </BlurContent>

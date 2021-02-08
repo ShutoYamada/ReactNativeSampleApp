@@ -1,6 +1,8 @@
 import React from 'react';
+import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {TaskActions} from '../../Tasks';
 
 type Props = {
   onPressFab?: () => void;
@@ -20,8 +22,9 @@ const ToucableCircle = styled.TouchableOpacity`
 
 const Fab: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
   const {onPressFab} = props;
+  const dispatch = useDispatch();
   return (
-    <ToucableCircle onPress={onPressFab}>
+    <ToucableCircle onPress={() => { dispatch(TaskActions.setDispModal(true)) }}>
       <Icon name="plus" style={{color: '#9890e3', fontSize: 24}} />
     </ToucableCircle>
   );

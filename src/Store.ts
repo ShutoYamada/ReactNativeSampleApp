@@ -5,14 +5,14 @@ import { TaskState, TaskReducer } from './modules/Tasks';
 /**
  * アプリ全体のState
  */
-class State {
+export class RootState {
     task: TaskState = new TaskState();
 }
 
 /**
  * 各modulesで生成したReducerを結合
  */
-const reducer = combineReducers<State>({
+const reducer = combineReducers<RootState>({
     task: TaskReducer,
 });
 
