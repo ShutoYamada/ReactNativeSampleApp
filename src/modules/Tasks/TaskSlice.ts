@@ -2,9 +2,15 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import TaskState from './TaskState';
 import Task from './objects/Task';
 
+const initialState: TaskState = {
+    detail: null,
+    dispModal: false,
+    list: [],
+}
+
 const TaskSlice = createSlice({
     name: 'task',
-    initialState: new TaskState(),
+    initialState: initialState,
     reducers: {
         /** タスク追加アクション */
         addList: (state: TaskState, action: PayloadAction<Task>) => {
@@ -16,6 +22,9 @@ const TaskSlice = createSlice({
         },
         /** モーダル表示フラグ制御アクション */
         setDispModal: (state: TaskState, action: PayloadAction<boolean>) => {
+            console.log("action");
+            console.log(action);
+            console.log(state);
             state.dispModal = action.payload;
         }
     }
