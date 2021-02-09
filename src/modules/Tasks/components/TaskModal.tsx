@@ -1,12 +1,13 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Modal from 'react-native-modal';
 import {BlurView} from '@react-native-community/blur';
 import {InactiveColor} from '../../../constants';
 import {RootState} from '../../../Store';
 import {TaskActions} from '../index';
-import {Button} from 'react-native';
+import {Button, TouchableOpacity, View} from 'react-native';
 
 const BlurContent = styled(BlurView)`
   width: 90%;
@@ -14,6 +15,7 @@ const BlurContent = styled(BlurView)`
   border-radius: 10px;
   justify-content: center;
   align-items: center;
+  padding: 6%;
 
   border-width: 0.5px;
   border-radius: 10px;
@@ -40,7 +42,14 @@ const TaskModal: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
       hasBackdrop={false}
       style={{alignItems: 'center'}}>
       <BlurContent blurAmount={8} blurType="light">
-        <Text>Overlay Text</Text>
+        <View style={{width: '100%', alignItems: 'flex-end'}}>
+          <TouchableOpacity onPress={() => {}}>
+            <Icon name="close" style={{color: '#EC8AA0', fontSize: 24}} />
+          </TouchableOpacity>
+        </View>
+        <Text style={{width: '100%', backgroundColor: 'red'}}>
+          Overlay Text
+        </Text>
         <Button
           title="Close"
           onPress={() => {
