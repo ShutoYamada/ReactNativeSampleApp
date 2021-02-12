@@ -9,6 +9,9 @@ import {Fab} from './modules/Commons';
 import store from './Store';
 import {Task, TaskModal, TaskList} from './modules/Tasks';
 
+/**
+ * App
+ */
 const App: React.FC = () => {
   const data: Task[] = [
     {name: 'Some Task1', checked: true},
