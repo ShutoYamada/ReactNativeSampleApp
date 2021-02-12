@@ -17,15 +17,19 @@ const TaskSlice = createSlice({
             state.list = [...state.list, action.payload];
         },
         /** 詳細タスク設定アクション */
+         // #F0F 使わないかも
         setDetail: (state: TaskState, action: PayloadAction<Task>) => {
             state.detail = action.payload;
         },
-        /** モーダル表示フラグ制御アクション */
-        setDispModal: (state: TaskState, action: PayloadAction<boolean>) => {
-            console.log("action");
-            console.log(action);
-            console.log(state);
-            state.dispModal = action.payload;
+        /** モーダルを開くアクション */
+        openModal: (state: TaskState, action: PayloadAction<Task>) => {
+            state.dispModal = true;
+            state.detail = action.payload;
+        },
+        /** モーダルを閉じるアクション */
+        closeModal: (state: TaskState) => {
+            state.dispModal = false;
+            state.detail = null;
         }
     }
 });
