@@ -2,35 +2,35 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import TaskState from './TaskState';
 import Task from './objects/Task';
 
-const initialState: TaskState = {
-    detail: null,
-    dispModal: false,
-    list: [],
-}
+const initialState: TaskState = new TaskState();
 
 const TaskSlice = createSlice({
     name: 'task',
     initialState: initialState,
     reducers: {
         /** タスク追加アクション */
-        addList: (state: TaskState, action: PayloadAction<Task>) => {
-            state.list = [...state.list, action.payload];
-        },
+        addList: (state: TaskState, action: PayloadAction<Task>) => ({
+            ...state,
+            list: [...state.list, action.payload]
+        }),
         /** 詳細タスク設定アクション */
          // #F0F 使わないかも
-        setDetail: (state: TaskState, action: PayloadAction<Task>) => {
-            state.detail = action.payload;
-        },
+        setDetail: (state: TaskState, action: PayloadAction<Task>) => ({
+            ...state,
+            detail: action.payload,
+        }),
         /** モーダルを開くアクション */
-        openModal: (state: TaskState, action: PayloadAction<Task>) => {
-            state.dispModal = true;
-            state.detail = action.payload;
-        },
+        openModal: (state: TaskState, action: PayloadAction<Task>) => ({
+            ...state,
+            detail: action.payload,
+            dispModal: true
+        }),
         /** モーダルを閉じるアクション */
-        closeModal: (state: TaskState) => {
-            state.dispModal = false;
-            state.detail = null;
-        }
+        closeModal: (state: TaskState) => ({
+            ...state,
+            detail: null,
+            dispModal: false,
+        })
     }
 });
 

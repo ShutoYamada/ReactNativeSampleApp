@@ -53,7 +53,7 @@ const TaskModal: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
         <Button
           title="Close"
           onPress={() => {
-            
+            dispatch(TaskActions.closeModal());
           }}></Button>
       </BlurContent>
     </Modal>
