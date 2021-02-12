@@ -24,7 +24,7 @@ const Fab: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
   const {onPressFab} = props;
   const dispatch = useDispatch();
   return (
-    <ToucableCircle onPress={() => { dispatch(TaskActions.setDispModal(true)) }}>
+    <ToucableCircle onPress={onPressFab}>
       <Icon name="plus" style={{color: '#9890e3', fontSize: 24}} />
     </ToucableCircle>
   );
