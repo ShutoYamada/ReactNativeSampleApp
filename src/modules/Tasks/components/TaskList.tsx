@@ -20,7 +20,7 @@ type Props = {
   taskList: Task[]
 };
 
-const TaskSceen: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
+const TaskList: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
   const {taskList} = props;
   return (
     <Wrapper>
@@ -36,4 +36,4 @@ const TaskSceen: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
   );
 };
 
-export default TaskSceen;
+export default TaskList;
