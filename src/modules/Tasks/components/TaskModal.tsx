@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -35,6 +35,7 @@ const TaskModal: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
     (state: RootState) => state?.task?.dispModal,
   );
   const dispatch = useDispatch();
+  const closeModal = useCallback(() => dispatch(TaskActions.closeModal()), []);
 
   return (
     <Modal
@@ -43,18 +44,14 @@ const TaskModal: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
       style={{alignItems: 'center'}}>
       <BlurContent blurAmount={8} blurType="light">
         <View style={{width: '100%', alignItems: 'flex-end'}}>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity onPress={closeModal}>
             <Icon name="close" style={{color: '#EC8AA0', fontSize: 24}} />
           </TouchableOpacity>
         </View>
         <Text style={{width: '100%', backgroundColor: 'red'}}>
           Overlay Text
         </Text>
-        <Button
-          title="Close"
-          onPress={() => {
-            dispatch(TaskActions.closeModal());
-          }}></Button>
+        <Button title="Close" onPress={closeModal}></Button>
       </BlurContent>
     </Modal>
   );
