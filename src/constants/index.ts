@@ -1,6 +1,7 @@
-import {ActiveColor, InactiveColor} from './Colors';
+import {ActiveColor, InactiveColor, ErrorColor} from './Colors';
 
 export {
     ActiveColor,
-    InactiveColor
+    InactiveColor,
+    ErrorColor,
 }
