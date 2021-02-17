@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
+import Swipeout from 'react-native-swipeout';
+import {Text} from 'react-native';
 import styled from 'styled-components/native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {BlurView} from '@react-native-community/blur';
 import Task from '../objects/Task';
 import TaskCheckBox from './TaskCheckBox';
@@ -40,12 +40,24 @@ type Props = {
 const TaskCard: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
   const {task} = props;
   return (
-    <BlurCard blurAmount={1} blurType="light">
-      <TaskCheckBox isActive={task.checked} />
-      <TaskContent>
-        <Text style={{color: '#FFF', fontSize: 24}}>{task.name}</Text>
-      </TaskContent>
-    </BlurCard>
+    <Swipeout
+      style={{backgroundColor: 'transparent'}}
+      right={[
+        {
+          text: 'Delete',
+          type: 'delete',
+          onPress: () => {
+            console.log('del');
+          },
+        },
+      ]}>
+      <BlurCard blurAmount={1} blurType="light">
+        <TaskCheckBox isActive={task.checked} />
+        <TaskContent>
+          <Text style={{color: '#FFF', fontSize: 24}}>{task.name}</Text>
+        </TaskContent>
+      </BlurCard>
+    </Swipeout>
   );
 };
 
