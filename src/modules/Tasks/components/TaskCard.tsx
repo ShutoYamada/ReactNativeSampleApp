@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import Swipeout from 'react-native-swipeout';
 import {Text} from 'react-native';
 import styled from 'styled-components/native';
 import {BlurView} from '@react-native-community/blur';
 import Task from '../objects/Task';
 import TaskCheckBox from './TaskCheckBox';
+import {useDispatch} from 'react-redux';
+import {TaskActions} from '..';
 
 const BlurCard = styled(BlurView)`
   width: 100%;
@@ -16,21 +18,14 @@ const BlurCard = styled(BlurView)`
   align-items: center;
 `;
 
-const Check = styled.TouchableOpacity`
-  border-width: 2px;
-  border-radius: 10px;
-  padding: 8px;
-  margin-left: 1%;
-`;
-
-const Checked = styled.TouchableOpacity`
-  ${Check}
-  border-color: #00a960;
-`;
-
-const TaskContent = styled.View`
+const TaskContent = styled.TouchableOpacity`
   margin-left: 2%;
   width: 100%;
+`;
+
+const Label = styled.Text`
+  color: #fff;
+  font-size: 24px;
 `;
 
 type Props = {
@@ -39,6 +34,10 @@ type Props = {
 
 const TaskCard: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
   const {task} = props;
+  const dispatch = useDispatch();
+  const dispDetail = useCallback(() => {
+    dispatch(TaskActions.openModal(task));
+  }, [dispatch]);
   return (
     <Swipeout
       style={{backgroundColor: 'transparent'}}
@@ -53,8 +52,8 @@ const TaskCard: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
       ]}>
       <BlurCard blurAmount={1} blurType="light">
         <TaskCheckBox isActive={task.checked} />
-        <TaskContent>
-          <Text style={{color: '#FFF', fontSize: 24}}>{task.name}</Text>
+        <TaskContent onPress={dispDetail}>
+          <Label>{task.name}</Label>
         </TaskContent>
       </BlurCard>
     </Swipeout>
