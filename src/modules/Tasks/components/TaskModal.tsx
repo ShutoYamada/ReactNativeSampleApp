@@ -1,17 +1,19 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
+import {Button, TextInput, TouchableOpacity, View} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Modal from 'react-native-modal';
+import {useForm, Controller} from 'react-hook-form';
 import {BlurView} from '@react-native-community/blur';
-import {InactiveColor} from '../../../constants';
+import {ErrorColor, InactiveColor} from '../../../constants';
 import {RootState} from '../../../Store';
-import {TaskActions} from '../index';
-import {Button, TouchableOpacity, View} from 'react-native';
+import {Task, TaskActions} from '../index';
+import TaskForm from '../objects/TaskForm';
+import {CommonButton, CommonTextInput} from '../../Commons';
 
 const BlurContent = styled(BlurView)`
   width: 90%;
-  height: 100px;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
@@ -23,9 +25,14 @@ const BlurContent = styled(BlurView)`
   border-bottom-width: 0px;
 `;
 
-const Text = styled.Text`
-  font-size: 24px;
+const Label = styled.Text`
+  width: 100%;
+  font-size: 18px;
   color: ${InactiveColor};
+`;
+
+const ErrorText = styled.Text`
+  color: ${ErrorColor};
 `;
 
 type Props = {};
@@ -34,8 +41,22 @@ const TaskModal: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
   const dispModal: boolean = useSelector(
     (state: RootState) => state?.task?.dispModal,
   );
+  const detail: Task | null = useSelector(
+    (state: RootState) => state?.task?.detail,
+  );
   const dispatch = useDispatch();
   const closeModal = useCallback(() => dispatch(TaskActions.closeModal()), []);
+  const {control, handleSubmit, errors, setValue} = useForm<TaskForm>();
+
+  // submit時処理
+  const onSubmit = (data: TaskForm) => {
+    console.log(data);
+  };
+
+  useEffect(() => {
+    setValue('name', detail?.name);
+    setValue('comment', detail?.comment);
+  }, [detail]);
 
   return (
     <Modal
@@ -48,10 +69,48 @@ const TaskModal: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
             <Icon name="close" style={{color: '#EC8AA0', fontSize: 24}} />
           </TouchableOpacity>
         </View>
-        <Text style={{width: '100%', backgroundColor: 'red'}}>
-          Overlay Text
-        </Text>
-        <Button title="Close" onPress={closeModal}></Button>
+        <Label>タイトル(必須)</Label>
+        <Controller
+          control={control}
+          render={({onChange, onBlur, value}) => (
+            <CommonTextInput
+              onBlur={onBlur}
+              onChangeText={(value) => onChange(value)}
+              value={value}
+            />
+          )}
+          name="name"
+          rules={{
+            required: true,
+            maxLength: 10,
+          }}
+          defaultValue=""
+        />
+        {errors.name && errors.name.type === 'required' && (
+          <ErrorText>タイトルは必須です。</ErrorText>
+        )}
+        {errors.name && errors.name.type === 'maxLength' && (
+          <ErrorText>タイトルは10文字以内で入力してください。</ErrorText>
+        )}
+        <Label>コメント</Label>
+        <Controller
+          control={control}
+          render={({onChange, onBlur, value}) => (
+            <CommonTextInput
+              onBlur={onBlur}
+              onChangeText={(value) => onChange(value)}
+              value={value}
+              multiline={true}
+            />
+          )}
+          name="comment"
+          defaultValue=""
+        />
+        <CommonButton
+          text="OK"
+          onPress={handleSubmit(onSubmit)}
+          primary={true}
+        />
       </BlurContent>
     </Modal>
   );
