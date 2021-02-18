@@ -1,4 +1,6 @@
 type Task = {
+    /** ID */
+    id: number;
     /** 名称 */
     name: string;
     /** 内容 */
