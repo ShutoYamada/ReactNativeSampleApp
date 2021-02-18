@@ -1,4 +1,4 @@
-import storage from './Storage';
+import storage from './storage';
 import {Task} from '../modules/Tasks';
 
 const KEY: string = 'task';
@@ -14,12 +14,12 @@ export default class TaskStorage {
     return taskList;
   }
 
-//   static async save(year, month, date, taskList) {
-//     await storage.save({
-//       key: `${year}-${month}-${date}`,
-//       data: {taskList: taskList},
-//     });
-//   }
+  static async save(data: Task[]) {
+    await storage.save({
+      key: KEY,
+      data: data,
+    });
+  }
 
 //   static remove(year, month, date) {
 //     storage.remove({key: `${year}-${month}-${date}`});
