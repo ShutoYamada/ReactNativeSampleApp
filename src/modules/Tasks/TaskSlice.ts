@@ -8,22 +8,24 @@ const TaskSlice = createSlice({
     name: 'task',
     initialState: initialState,
     reducers: {
-        /** タスク追加アクション */
-        addList: (state: TaskState, action: PayloadAction<Task>) => ({
+        /** 一覧タスク設定アクション */
+        setList: (state: TaskState, action: PayloadAction<Task[]>) => ({
             ...state,
-            list: [...state.list, action.payload]
+            list: action.payload,
         }),
         /** 詳細タスク設定アクション */
-         // #F0F 使わないかも
         setDetail: (state: TaskState, action: PayloadAction<Task>) => ({
             ...state,
             detail: action.payload,
+            dispModal: true,
+            isNewTask: false,
         }),
-        /** モーダルを開くアクション */
-        openModal: (state: TaskState, action: PayloadAction<Task>) => ({
+        /** タスク新規作成アクション */
+        createTask: (state: TaskState, action: PayloadAction<Task>) => ({
             ...state,
             detail: action.payload,
-            dispModal: true
+            dispModal: true,
+            isNewTask: true,
         }),
         /** モーダルを閉じるアクション */
         closeModal: (state: TaskState) => ({
