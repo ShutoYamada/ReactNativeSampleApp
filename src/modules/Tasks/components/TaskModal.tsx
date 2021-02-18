@@ -11,7 +11,7 @@ import {RootState} from '../../../Store';
 import {Task, TaskActions} from '../index';
 import TaskForm from '../objects/TaskForm';
 import {CommonButton, CommonTextInput} from '../../Commons';
-import {reflectToList, saveTaskList} from '../TaskUtil';
+import {reflectEditToList, saveTaskList} from '../TaskUtil';
 
 const BlurContent = styled(BlurView)`
   width: 90%;
@@ -39,7 +39,7 @@ const ErrorText = styled.Text`
 type Props = {};
 
 const TaskModal: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
-  const taskList: Task[] = useSelector((state: RootState) => state?.task?.list);
+  const list: Task[] = useSelector((state: RootState) => state?.task?.list);
   const dispModal: boolean = useSelector(
     (state: RootState) => state?.task?.dispModal,
   );
@@ -63,7 +63,7 @@ const TaskModal: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
     };
 
     // 編集した内容を全体のリストに反映させる
-    const mergedList = reflectToList(taskList, editedData, isNewTask);
+    const mergedList = reflectEditToList(list, editedData, isNewTask);
     // リストを保存する
     saveTaskList(mergedList);
     // リストをStoreに反映させる
