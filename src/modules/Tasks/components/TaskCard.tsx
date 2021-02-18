@@ -5,8 +5,10 @@ import styled from 'styled-components/native';
 import {BlurView} from '@react-native-community/blur';
 import Task from '../objects/Task';
 import TaskCheckBox from './TaskCheckBox';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {TaskActions} from '..';
+import {reflectDeleteToList, saveTaskList} from '../TaskUtil';
+import {RootState} from '../../../Store';
 
 const BlurCard = styled(BlurView)`
   width: 100%;
@@ -34,10 +36,20 @@ type Props = {
 
 const TaskCard: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
   const {task} = props;
+  const list: Task[] = useSelector((state: RootState) => state?.task?.list);
   const dispatch = useDispatch();
   const dispDetail = useCallback(() => {
     dispatch(TaskActions.setDetail(task));
   }, [dispatch]);
+
+  const deleteTask = useCallback(() => {
+    const deletedList: Task[] = reflectDeleteToList(list, task.id);
+    // リストを保存する
+    saveTaskList(deletedList);
+    // リストをStoreに反映させる
+    dispatch(TaskActions.setList(deletedList));
+  }, []);
+
   return (
     <Swipeout
       style={{backgroundColor: 'transparent'}}
@@ -45,9 +57,7 @@ const TaskCard: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
         {
           text: 'Delete',
           type: 'delete',
-          onPress: () => {
-            console.log('del');
-          },
+          onPress: deleteTask,
         },
       ]}>
       <BlurCard blurAmount={1} blurType="light">
