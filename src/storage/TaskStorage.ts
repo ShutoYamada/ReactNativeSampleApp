@@ -20,20 +20,4 @@ export default class TaskStorage {
       data: data,
     });
   }
-
-//   static remove(year, month, date) {
-//     storage.remove({key: `${year}-${month}-${date}`});
-//   }
-
-//   static async addTask(year, month, date, title, description, time) {
-//     const taskList = await this.load(year, month, date);
-//     const newTask = {
-//       title: title,
-//       description: description,
-//       time: time,
-//     };
-//     const newTaskList = taskList.concat([newTask]);
-//     await this.save(year, month, date, newTaskList);
-//   }
-
 }
