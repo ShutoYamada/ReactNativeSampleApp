@@ -1,12 +1,18 @@
 import { Task } from ".";
+import TaskStorage from '../../storage/TaskStorage';
 
 /**
  * 新しいタスクを生成
  * @param all 既存タスク全件
  */
-export const generateNewTask = (all : Task[]): Task | null => {
+export const generateNewTask = (all : Task[]): Task => {
     let hasDuplicate: boolean = true;
-    let result: Task | null= null;
+    let result: Task = { 
+        id: -1, 
+        name: 'undefiend', 
+        comment: '', 
+        checked: false
+    };
 
     // IDの重複しないタスクを生成する
     while(hasDuplicate) {
@@ -35,4 +41,46 @@ export const generateNewTask = (all : Task[]): Task | null => {
  */
 const generateRandomNumber = (range: number): number => {
     return Math.floor(Math.random() * range);
+}
+
+/**
+ * 更新・作成したタスク内容をリストに反映させる
+ * @param all タスク全件
+ * @param edit 更新・作成を行なったタスク
+ */
+export const reflectToList = (all: Task[], edit: Task, isNew: boolean): Task[] => {
+    let result: Task[] = []
+
+    if(isNew) {
+        result = [...all, edit];
+    }
+    else {
+        result = all?.reduce((acc: Task[], cur: Task) => {
+            if(edit.id === cur.id) {
+                acc.push(edit);
+            }
+            else {
+                acc.push(cur);
+            }
+            return acc;
+        },[]);
+    }
+
+    return result;
+}
+
+/**
+ * タスク全件を読み込み
+ */
+export const loadTaskList = async (): Promise<Task[]> => {
+    const all: Task[] = await TaskStorage.load();
+    return all;
+}
+
+/**
+ * タスク全件を保存
+ * @param all タスク全件
+ */
+export const saveTaskList = (all: Task[]) => {
+    TaskStorage.save(all);
 }
