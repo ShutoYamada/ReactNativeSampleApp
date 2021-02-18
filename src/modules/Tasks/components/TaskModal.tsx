@@ -11,6 +11,7 @@ import {RootState} from '../../../Store';
 import {Task, TaskActions} from '../index';
 import TaskForm from '../objects/TaskForm';
 import {CommonButton, CommonTextInput} from '../../Commons';
+import {reflectToList, saveTaskList} from '../TaskUtil';
 
 const BlurContent = styled(BlurView)`
   width: 90%;
@@ -38,11 +39,15 @@ const ErrorText = styled.Text`
 type Props = {};
 
 const TaskModal: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
+  const taskList: Task[] = useSelector((state: RootState) => state?.task?.list);
   const dispModal: boolean = useSelector(
     (state: RootState) => state?.task?.dispModal,
   );
   const detail: Task | null = useSelector(
     (state: RootState) => state?.task?.detail,
+  );
+  const isNewTask: boolean = useSelector(
+    (state: RootState) => state?.task?.isNewTask,
   );
   const dispatch = useDispatch();
   const closeModal = useCallback(() => dispatch(TaskActions.closeModal()), []);
@@ -50,12 +55,28 @@ const TaskModal: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
 
   // submit時処理
   const onSubmit = (data: TaskForm) => {
-    console.log(data);
+    // 編集した値をdetailに反映
+    const editedData: Task = {
+      ...(detail as Task),
+      name: data.name,
+      comment: data.comment,
+    };
+
+    // 編集した内容を全体のリストに反映させる
+    const mergedList = reflectToList(taskList, editedData, isNewTask);
+    // リストを保存する
+    saveTaskList(mergedList);
+    // リストをStoreに反映させる
+    dispatch(TaskActions.setList(mergedList));
+    // モーダルを閉じる
+    dispatch(TaskActions.closeModal());
   };
 
   useEffect(() => {
-    setValue('name', detail?.name);
-    setValue('comment', detail?.comment);
+    if (detail) {
+      setValue('name', detail?.name);
+      setValue('comment', detail?.comment);
+    }
   }, [detail]);
 
   return (
@@ -80,11 +101,11 @@ const TaskModal: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
             />
           )}
           name="name"
+          defaultValue=""
           rules={{
             required: true,
             maxLength: 10,
           }}
-          defaultValue=""
         />
         {errors.name && errors.name.type === 'required' && (
           <ErrorText>タイトルは必須です。</ErrorText>
