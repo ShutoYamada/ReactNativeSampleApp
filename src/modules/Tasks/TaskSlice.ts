@@ -32,6 +32,7 @@ const TaskSlice = createSlice({
             ...state,
             detail: null,
             dispModal: false,
+            isNewTask: false,
         })
     }
 });
