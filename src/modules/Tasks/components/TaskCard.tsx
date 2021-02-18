@@ -36,7 +36,7 @@ const TaskCard: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
   const {task} = props;
   const dispatch = useDispatch();
   const dispDetail = useCallback(() => {
-    dispatch(TaskActions.openModal(task));
+    dispatch(TaskActions.setDetail(task));
   }, [dispatch]);
   return (
     <Swipeout
