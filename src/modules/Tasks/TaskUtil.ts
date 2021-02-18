@@ -47,8 +47,9 @@ const generateRandomNumber = (range: number): number => {
  * 更新・作成したタスク内容をリストに反映させる
  * @param all タスク全件
  * @param edit 更新・作成を行なったタスク
+ * @param isNew 新規作成かどうか
  */
-export const reflectToList = (all: Task[], edit: Task, isNew: boolean): Task[] => {
+export const reflectEditToList = (all: Task[], edit: Task, isNew: boolean): Task[] => {
     let result: Task[] = []
 
     if(isNew) {
@@ -67,6 +68,15 @@ export const reflectToList = (all: Task[], edit: Task, isNew: boolean): Task[] =
     }
 
     return result;
+}
+
+/**
+ * 削除したタスク内容をリストに反映させる
+ * @param all タスク全件
+ * @param deletedId 削除したタスクID
+ */
+export const reflectDeleteToList = (all: Task[], deletedId: number): Task[] => {
+    return all?.filter((t)=> t.id !== deletedId);
 }
 
 /**
