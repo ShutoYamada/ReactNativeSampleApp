@@ -4,7 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
 import {Main, Fab, FabWrap, BlurContent} from '../../Commons';
 import {RootState} from '../../../Store';
-import {GradationCard} from '../';
+import {GradationCard, SettingActions} from '../';
 import {Text, View} from 'react-native';
 import {
   PurpleGradation,
@@ -14,6 +14,8 @@ import {
   GreenGradation,
   BlueGradation,
 } from '../../../constants';
+import {loadSetting} from '../SettingUtil';
+import {SettingState} from '../';
 
 const GradationRow = styled.View`
   margin-top: 2%;
@@ -25,8 +27,15 @@ const GradationRow = styled.View`
 
 const SettingScreen: React.FC = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const back = useCallback(() => {
     navigation.goBack();
+  }, []);
+
+  useEffect(() => {
+    loadSetting().then((setting: SettingState) => {
+      dispatch(SettingActions.setSetting(setting));
+    });
   }, []);
 
   return (

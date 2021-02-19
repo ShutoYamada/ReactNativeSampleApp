@@ -1,5 +1,5 @@
 import { Task } from ".";
-import TaskStorage from '../../storage/TaskStorage';
+import {TaskStorage} from '../../storage';
 
 /**
  * 新しいタスクを生成

@@ -6,6 +6,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {RootState} from '../../../Store';
 import {ActiveColor} from '../../../constants';
 import {SettingActions, SettingState} from '..';
+import {saveSetting} from '../SettingUtil';
 
 const Gradation = styled(LinearGradient)`
   width: 100%;
@@ -43,6 +44,7 @@ const GradationCard: React.FC<Props> = (props) => {
       bgColor: colors,
     };
     dispatch(SettingActions.setSetting(newSettingState));
+    saveSetting(newSettingState);
   }, [settingState, colors, dispatch]);
   const isSelected: boolean = colors === selectedBgColor;
 
