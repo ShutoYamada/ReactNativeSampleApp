@@ -9,11 +9,19 @@ type Props = {
   iconName: string;
 };
 
-const ToucableCircle = styled.TouchableOpacity`
+/**
+ * Fabをラップする用のコンポーネント
+ */
+export const FabWrap = styled.View`
   position: absolute;
   bottom: 4%;
   right: 5%;
+`;
+
+const ToucableCircle = styled.TouchableOpacity`
   background-color: #fff;
+  margin-top: 2%;
+  margin-bottom: 2%;
   width: 60px;
   height: 60px;
   border-radius: 60px;
