@@ -1,8 +1,7 @@
 import React from 'react';
-import {useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {TaskActions} from '../../Tasks';
+import {ActiveColor} from '../../../constants';
 
 type Props = {
   onPressFab: () => void;
@@ -33,7 +32,7 @@ const Fab: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
   const {onPressFab, iconName} = props;
   return (
     <ToucableCircle onPress={onPressFab}>
-      <Icon name={iconName} style={{color: '#9890e3', fontSize: 24}} />
+      <Icon name={iconName} style={{color: ActiveColor, fontSize: 24}} />
     </ToucableCircle>
   );
 };
