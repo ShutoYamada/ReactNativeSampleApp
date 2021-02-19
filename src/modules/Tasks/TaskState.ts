@@ -1,14 +1,21 @@
 import Task from './objects/Task';
 
-class TaskState {
+type TaskState = {
     /** タスク一覧 */
-    list: Task[] = [];
+    list: Task[];
     /** タスク詳細 */
-    detail: Task | null = null;
+    detail: Task | null;
     /** 詳細モーダル表示 */
-    dispModal: boolean = false;
+    dispModal: boolean;
     /** 新規作成タスクかどうか */
-    isNewTask: boolean = false;
+    isNewTask: boolean;
+}
+
+export const initialState: TaskState = {
+    list: [],
+    detail: null,
+    dispModal: false,
+    isNewTask: false,
 }
 
 export default TaskState;

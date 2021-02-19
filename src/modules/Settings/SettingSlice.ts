@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import SettingState from './SettingState';
-
-const initialState: SettingState = new SettingState();
+import SettingState, { initialState } from './SettingState';
 
 const SettingSlice = createSlice({
     name: 'setting',

@@ -1,12 +1,18 @@
 import { PurpleGradation } from '../../constants/'
 
-class SettingState {
+type SettingState = {
     /** 完了後すぐ削除とするか */
-    deleteWithComplete: boolean = false;
+    deleteWithComplete: boolean;
     /** 完了タスクを非表示にする */
-    hiddenCompletedTask: boolean = false;
+    hiddenCompletedTask: boolean;
     /** 背景色 */
-    bgColor: string[] = PurpleGradation;
+    bgColor: string[];
+}
+
+export const initialState: SettingState = {
+    deleteWithComplete: false,
+    hiddenCompletedTask: false,
+    bgColor: PurpleGradation,
 }
 
 export default SettingState;

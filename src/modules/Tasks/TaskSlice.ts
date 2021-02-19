@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import TaskState from './TaskState';
+import TaskState, { initialState } from './TaskState';
 import Task from './objects/Task';
-
-const initialState: TaskState = new TaskState();
 
 const TaskSlice = createSlice({
     name: 'task',
