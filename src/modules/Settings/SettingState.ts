@@ -1,4 +1,4 @@
-import { FunnyGradation } from '../../constants/'
+import { PurpleGradation } from '../../constants/'
 
 class SettingState {
     /** 完了後すぐ削除とするか */
@@ -6,7 +6,7 @@ class SettingState {
     /** 完了タスクを非表示にする */
     hiddenCompletedTask: boolean = false;
     /** 背景色 */
-    bgColor: string[] = FunnyGradation;
+    bgColor: string[] = PurpleGradation;
 }
 
 export default SettingState;

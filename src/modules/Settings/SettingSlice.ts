@@ -3,11 +3,11 @@ import SettingState from './SettingState';
 
 const initialState: SettingState = new SettingState();
 
-const TaskSlice = createSlice({
-    name: 'task',
+const SettingSlice = createSlice({
+    name: 'setting',
     initialState: initialState,
     reducers: {
-        /** 一覧タスク設定アクション */
+        /** Setting設定アクション */
         setSetting: (state: SettingState, action: PayloadAction<SettingState>) => ({
             ...state,
             ...action.payload,
@@ -15,7 +15,7 @@ const TaskSlice = createSlice({
     }
 });
 
-export const TaskActions = TaskSlice.actions;
-export const TaskReducer = TaskSlice.reducer;
+export const SettingActions = SettingSlice.actions;
+export const SettingReducer = SettingSlice.reducer;
 
-export default TaskSlice;
+export default SettingSlice;
