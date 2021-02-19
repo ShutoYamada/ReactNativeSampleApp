@@ -2,7 +2,7 @@ import React, {useCallback, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
-import {TaskActions, Task, TaskModal, TaskList} from '../index';
+import {TaskActions, Task, TaskModal, TaskList} from '../';
 import {Main, Fab, FabWrap} from '../../Commons';
 import {RootState} from '../../../Store';
 import {generateNewTask, loadTaskList} from '../TaskUtil';
