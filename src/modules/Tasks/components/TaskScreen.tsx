@@ -1,8 +1,9 @@
 import React, {useCallback, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
+import styled from 'styled-components/native';
 import {TaskActions, Task, TaskModal, TaskList} from '../index';
-import {Main, Fab} from '../../Commons';
+import {Main, Fab, FabWrap} from '../../Commons';
 import {RootState} from '../../../Store';
 import {generateNewTask, loadTaskList} from '../TaskUtil';
 
@@ -12,10 +13,10 @@ const TaskScreen: React.FC = (props) => {
   const dispatch = useDispatch();
   const createTask = useCallback(() => {
     dispatch(TaskActions.createTask(generateNewTask(list)));
-
-    // #F0F TODO これで遷移できる
-    //navigation.navigate('Setting');
   }, [dispatch]);
+  const moveToSettingScreen = useCallback(() => {
+    navigation.navigate('Setting');
+  }, []);
 
   useEffect(() => {
     loadTaskList().then((all: Task[]) => {
@@ -26,7 +27,10 @@ const TaskScreen: React.FC = (props) => {
   return (
     <Main>
       <TaskList taskList={list} />
-      <Fab onPressFab={createTask} iconName={'plus'} />
+      <FabWrap>
+        <Fab onPressFab={moveToSettingScreen} iconName={'cog'} />
+        <Fab onPressFab={createTask} iconName={'plus'} />
+      </FabWrap>
       <TaskModal />
     </Main>
   );
