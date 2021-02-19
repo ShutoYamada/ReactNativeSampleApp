@@ -1,11 +1,8 @@
-import React, {useCallback, useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import React, {useCallback} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
 import {Main, Fab, FabWrap, BlurContent} from '../../Commons';
-import {RootState} from '../../../Store';
-import {GradationCard, SettingActions} from '../';
-import {Text, View} from 'react-native';
+import {GradationCard} from '../';
 import {
   PurpleGradation,
   PinkGradation,
@@ -14,8 +11,6 @@ import {
   GreenGradation,
   BlueGradation,
 } from '../../../constants';
-import {loadSetting} from '../SettingUtil';
-import {SettingState} from '../';
 
 const GradationRow = styled.View`
   margin-top: 2%;
@@ -27,21 +22,13 @@ const GradationRow = styled.View`
 
 const SettingScreen: React.FC = () => {
   const navigation = useNavigation();
-  const dispatch = useDispatch();
   const back = useCallback(() => {
     navigation.goBack();
-  }, []);
-
-  useEffect(() => {
-    loadSetting().then((setting: SettingState) => {
-      dispatch(SettingActions.setSetting(setting));
-    });
   }, []);
 
   return (
     <Main>
       <BlurContent blurAmount={1} blurType="light">
-        <Text>hoge</Text>
         <GradationRow>
           <GradationCard colors={GreenGradation} />
           <GradationCard colors={RedGradation} />

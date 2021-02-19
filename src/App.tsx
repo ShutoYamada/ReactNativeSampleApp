@@ -3,11 +3,8 @@ import {Provider} from 'react-redux';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {SafeAreaView, StatusBar} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import {Fab, Main} from './modules/Commons';
 import store from './Store';
-import {Task, TaskModal, TaskList, TaskScreen} from './modules/Tasks';
+import {TaskScreen} from './modules/Tasks';
 import {SettingScreen} from './modules/Settings';
 
 const Stack = createStackNavigator();
