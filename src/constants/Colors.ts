@@ -5,7 +5,7 @@ const ErrorColor: string = '#F00';
 const PurpleGradation: string[] = ['#9890e3', '#f093fb'];
 const PinkGradation: string[] = ['#fad0c4', '#ffd1ff'];
 const SunsetGradation: string[] = ['#e14fad', '#f9d423'];
-const GreenGradation: string[] = ['#84fab0', '#8fd3f4'];
+const GreenGradation: string[] = ['#50cc7f', '#f5d100'];
 const RedGradation: string[] = ['#f9d423', '#f83600'];
 const BlueGradation: string[] = ['#30cfd0', '#330867'];
 
