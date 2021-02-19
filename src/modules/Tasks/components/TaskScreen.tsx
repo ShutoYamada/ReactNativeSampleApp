@@ -26,7 +26,7 @@ const TaskScreen: React.FC = (props) => {
   return (
     <Main>
       <TaskList taskList={list} />
-      <Fab onPressFab={createTask} />
+      <Fab onPressFab={createTask} iconName={'plus'} />
       <TaskModal />
     </Main>
   );
