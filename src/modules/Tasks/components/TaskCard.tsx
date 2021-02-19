@@ -1,13 +1,16 @@
 import React, {useCallback} from 'react';
 import Swipeout from 'react-native-swipeout';
-import {Text} from 'react-native';
 import styled from 'styled-components/native';
 import {BlurView} from '@react-native-community/blur';
 import Task from '../objects/Task';
 import TaskCheckBox from './TaskCheckBox';
 import {useDispatch, useSelector} from 'react-redux';
 import {TaskActions} from '..';
-import {reflectDeleteToList, saveTaskList} from '../TaskUtil';
+import {
+  reflectDeleteToList,
+  reflectEditToList,
+  saveTaskList,
+} from '../TaskUtil';
 import {RootState} from '../../../Store';
 
 const BlurCard = styled(BlurView)`
@@ -50,6 +53,18 @@ const TaskCard: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
     dispatch(TaskActions.setList(deletedList));
   }, []);
 
+  const checkTask = useCallback(() => {
+    const newTask: Task = {
+      ...task,
+      checked: !task.checked,
+    };
+    const mergedList: Task[] = reflectEditToList(list, newTask, false);
+    // リストを保存する
+    saveTaskList(mergedList);
+    // リストをStoreに反映させる
+    dispatch(TaskActions.setList(mergedList));
+  }, [list]);
+
   return (
     <Swipeout
       style={{backgroundColor: 'transparent'}}
@@ -61,7 +76,7 @@ const TaskCard: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
         },
       ]}>
       <BlurCard blurAmount={1} blurType="light">
-        <TaskCheckBox isActive={task.checked} />
+        <TaskCheckBox isActive={task.checked} onCheck={checkTask} />
         <TaskContent onPress={dispDetail}>
           <Label>{task.name}</Label>
         </TaskContent>

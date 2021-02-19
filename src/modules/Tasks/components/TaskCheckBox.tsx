@@ -16,16 +16,17 @@ const CheckIcon = styled(Icon)`
 
 type Props = {
   isActive: boolean;
+  onCheck: () => void;
 };
 
 const TaskCheckBox: React.FC<Props> = (
   props: React.PropsWithChildren<Props>,
 ) => {
-  const {isActive} = props;
+  const {isActive, onCheck} = props;
   const color: string = isActive ? ActiveColor : InactiveColor;
 
   return (
-    <CheckWrap style={{borderColor: color}}>
+    <CheckWrap style={{borderColor: color}} onPress={onCheck}>
       <CheckIcon name="check" style={{color: color}} />
     </CheckWrap>
   );
