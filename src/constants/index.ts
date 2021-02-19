@@ -1,8 +1,23 @@
-import {ActiveColor, InactiveColor, ErrorColor, FunnyGradation} from './Colors';
+import {
+    ActiveColor, 
+    InactiveColor, 
+    ErrorColor, 
+    PurpleGradation,
+    PinkGradation,
+    SunsetGradation,
+    RedGradation,
+    GreenGradation,
+    BlueGradation
+} from './Colors';
 
 export {
     ActiveColor,
     InactiveColor,
     ErrorColor,
-    FunnyGradation,
+    PurpleGradation,
+    PinkGradation,
+    SunsetGradation,
+    RedGradation,
+    GreenGradation,
+    BlueGradation
 }
