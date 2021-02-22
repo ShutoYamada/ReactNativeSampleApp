@@ -75,7 +75,7 @@ const TaskCard: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
           onPress: deleteTask,
         },
       ]}>
-      <BlurCard blurAmount={1} blurType="light">
+      <BlurCard blurAmount={1} blurType='light'>
         <TaskCheckBox isActive={task.checked} onCheck={checkTask} />
         <TaskContent onPress={dispDetail}>
           <Label>{task.name}</Label>

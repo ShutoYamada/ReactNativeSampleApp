@@ -1,6 +1,6 @@
 type TaskForm = {
-    name: string;
-    comment: string;
-}
+  name: string;
+  comment: string;
+};
 
 export default TaskForm;

@@ -10,9 +10,11 @@ export default class SettingStorage {
       .then((data: SettingState) => {
         return data;
       })
-      .catch(() => {return initialState});
+      .catch(() => {
+        return initialState;
+      });
     return state;
-  }
+  };
 
   static async save(data: SettingState) {
     await storage.save({

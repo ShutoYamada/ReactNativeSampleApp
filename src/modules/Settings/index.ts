@@ -4,10 +4,10 @@ import SettingState, {initialState} from './SettingState';
 import {SettingActions, SettingReducer} from './SettingSlice';
 
 export {
-    SettingState,
-    initialState,
-    SettingActions,
-    SettingReducer,
-    SettingScreen,
-    GradationCard
-}
+  SettingState,
+  initialState,
+  SettingActions,
+  SettingReducer,
+  SettingScreen,
+  GradationCard,
+};

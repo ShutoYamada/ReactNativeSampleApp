@@ -10,9 +10,11 @@ export default class TaskStorage {
       .then((data: Task[]) => {
         return data;
       })
-      .catch(() => {return []});
+      .catch(() => {
+        return [];
+      });
     return taskList;
-  }
+  };
 
   static async save(data: Task[]) {
     await storage.save({

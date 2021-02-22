@@ -28,7 +28,7 @@ const SettingScreen: React.FC = () => {
 
   return (
     <Main>
-      <BlurContent blurAmount={1} blurType="light">
+      <BlurContent blurAmount={1} blurType='light'>
         <GradationRow>
           <GradationCard colors={GreenGradation} />
           <GradationCard colors={RedGradation} />

@@ -25,7 +25,7 @@ const Main: React.FC = (props) => {
       end={{x: 1, y: 0.25}}
       colors={selectedBgColor}
       style={{height: '100%'}}>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle='dark-content' />
       <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
         {children}
       </SafeAreaView>

@@ -84,10 +84,10 @@ const TaskModal: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
       isVisible={dispModal}
       hasBackdrop={false}
       style={{alignItems: 'center'}}>
-      <BlurContent blurAmount={8} blurType="light">
+      <BlurContent blurAmount={8} blurType='light'>
         <View style={{width: '100%', alignItems: 'flex-end'}}>
           <TouchableOpacity onPress={closeModal}>
-            <Icon name="close" style={{color: '#EC8AA0', fontSize: 24}} />
+            <Icon name='close' style={{color: '#EC8AA0', fontSize: 24}} />
           </TouchableOpacity>
         </View>
         <Label>タイトル(必須)</Label>
@@ -100,8 +100,8 @@ const TaskModal: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
               value={value}
             />
           )}
-          name="name"
-          defaultValue=""
+          name='name'
+          defaultValue=''
           rules={{
             required: true,
             maxLength: 10,
@@ -124,11 +124,11 @@ const TaskModal: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
               multiline={true}
             />
           )}
-          name="comment"
-          defaultValue=""
+          name='comment'
+          defaultValue=''
         />
         <CommonButton
-          text="OK"
+          text='OK'
           onPress={handleSubmit(onSubmit)}
           primary={true}
         />

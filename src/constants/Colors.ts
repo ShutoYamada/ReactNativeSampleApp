@@ -10,13 +10,13 @@ const RedGradation: string[] = ['#f9d423', '#f83600'];
 const BlueGradation: string[] = ['#30cfd0', '#330867'];
 
 export {
-    ActiveColor,
-    InactiveColor,
-    ErrorColor,
-    PurpleGradation,
-    PinkGradation,
-    SunsetGradation,
-    GreenGradation,
-    RedGradation,
-    BlueGradation,
-}
+  ActiveColor,
+  InactiveColor,
+  ErrorColor,
+  PurpleGradation,
+  PinkGradation,
+  SunsetGradation,
+  GreenGradation,
+  RedGradation,
+  BlueGradation,
+};

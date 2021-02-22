@@ -18,12 +18,12 @@ const App: React.FC = () => {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
-            name="Home"
+            name='Home'
             component={TaskScreen}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Setting"
+            name='Setting'
             component={SettingScreen}
             options={{headerShown: false}}
           />

@@ -9,6 +9,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css}\"",
     "bundle:ios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'",
     "release:android": "cd android && ./gradlew clean && ./gradlew assembleRelease",
     "postinstall": "npm run bundle:ios"

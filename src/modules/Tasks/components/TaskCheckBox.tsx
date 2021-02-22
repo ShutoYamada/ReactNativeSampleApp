@@ -27,7 +27,7 @@ const TaskCheckBox: React.FC<Props> = (
 
   return (
     <CheckWrap style={{borderColor: color}} onPress={onCheck}>
-      <CheckIcon name="check" style={{color: color}} />
+      <CheckIcon name='check' style={{color: color}} />
     </CheckWrap>
   );
 };

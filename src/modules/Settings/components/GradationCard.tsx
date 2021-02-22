@@ -51,7 +51,7 @@ const GradationCard: React.FC<Props> = (props) => {
   return (
     <GradationWrap onPress={onPress}>
       <Gradation start={{x: 0, y: 0.75}} end={{x: 1, y: 0.25}} colors={colors}>
-        {isSelected ? <SelectedIcon name="check" /> : null}
+        {isSelected ? <SelectedIcon name='check' /> : null}
       </Gradation>
     </GradationWrap>
   );
