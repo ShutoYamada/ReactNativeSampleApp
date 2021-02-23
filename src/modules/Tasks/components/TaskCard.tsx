@@ -12,6 +12,7 @@ import {
   saveTaskList,
 } from '../TaskUtil';
 import {RootState} from '../../../Store';
+import { Alert } from 'react-native';
 
 const BlurCard = styled(BlurView)`
   width: 100%;
@@ -46,11 +47,23 @@ const TaskCard: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
   }, [dispatch]);
 
   const deleteTask = useCallback(() => {
-    const deletedList: Task[] = reflectDeleteToList(list, task.id);
-    // リストを保存する
-    saveTaskList(deletedList);
-    // リストをStoreに反映させる
-    dispatch(TaskActions.setList(deletedList));
+    Alert.alert('確認','タスクを削除します。\r\nよろしいですか？', [
+      {
+        text: 'はい',
+        onPress: () => {
+          console.log("OK");
+
+          const deletedList: Task[] = reflectDeleteToList(list, task.id);
+          // リストを保存する
+          saveTaskList(deletedList);
+          // リストをStoreに反映させる
+          dispatch(TaskActions.setList(deletedList));
+        }
+      },
+      {
+        text: 'いいえ',
+      }
+    ])
   }, []);
 
   const checkTask = useCallback(() => {
