@@ -12,12 +12,18 @@ import {
   BlueGradation,
 } from '../../../constants';
 
-const GradationRow = styled.View`
+const Row = styled.View`
   margin-top: 2%;
   margin-bottom: 2%;
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
+`;
+
+const Label = styled.Text`
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
 `;
 
 const SettingScreen: React.FC = () => {
@@ -29,16 +35,17 @@ const SettingScreen: React.FC = () => {
   return (
     <Main>
       <BlurContent blurAmount={1} blurType='light'>
-        <GradationRow>
+        <Label>テーマカラー</Label>
+        <Row>
           <GradationCard colors={GreenGradation} />
           <GradationCard colors={RedGradation} />
           <GradationCard colors={BlueGradation} />
-        </GradationRow>
-        <GradationRow>
+        </Row>
+        <Row>
           <GradationCard colors={PurpleGradation} />
           <GradationCard colors={PinkGradation} />
           <GradationCard colors={SunsetGradation} />
-        </GradationRow>
+        </Row>
       </BlurContent>
       <FabWrap>
         <Fab onPressFab={back} iconName={'arrow-left'} />
