@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
+/**
+ * 文字入力
+ */
 const CommonTextInput = styled.TextInput`
   border-radius: 10px;
   border-width: 0.5px;

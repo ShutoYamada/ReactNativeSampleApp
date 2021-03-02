@@ -2,10 +2,16 @@ import React from 'react';
 import styled from 'styled-components/native';
 import {ActiveColor, InactiveColor} from '../../../constants';
 
-interface ButtonWrapProps {
+/**
+ * Wrapのプロパティ
+ */
+type ButtonWrapProps = {
   primary: boolean;
-}
+};
 
+/**
+ * ボタンラップ コンポーネント
+ */
 const Wrap = styled.TouchableOpacity<ButtonWrapProps>`
   width: 50%;
   padding: 12px;
@@ -13,23 +19,33 @@ const Wrap = styled.TouchableOpacity<ButtonWrapProps>`
   background-color: ${({primary}) => (primary ? ActiveColor : InactiveColor)};
 `;
 
-const Text = styled.Text<ButtonWrapProps>`
+/**
+ * ボタンラベル コンポーネント
+ */
+const Label = styled.Text<ButtonWrapProps>`
   font-size: 16px;
   text-align: center;
   color: ${({primary}) => (primary ? '#FFF' : '#FFF')};
 `;
 
-interface Props {
+/**
+ * Props
+ */
+type Props = {
   onPress: () => void;
   text: string;
   primary: boolean;
-}
+};
 
+/**
+ * 汎用ボタン
+ * @param props プロパティ
+ */
 const CommonButton: React.FC<Props> = (props: Props) => {
   const {onPress, text, primary} = props;
   return (
     <Wrap onPress={onPress} primary={primary}>
-      <Text primary={primary}>{text}</Text>
+      <Label primary={primary}>{text}</Label>
     </Wrap>
   );
 };

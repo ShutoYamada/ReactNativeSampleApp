@@ -3,6 +3,9 @@ import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {ActiveColor} from '../../../constants';
 
+/**
+ * Props
+ */
 type Props = {
   onPressFab: () => void;
   iconName: string;
@@ -17,6 +20,9 @@ export const FabWrap = styled.View`
   right: 5%;
 `;
 
+/**
+ * 円形のタッチ可能領域
+ */
 const ToucableCircle = styled.TouchableOpacity`
   background-color: #fff;
   margin-top: 2%;
@@ -28,7 +34,11 @@ const ToucableCircle = styled.TouchableOpacity`
   align-items: center;
 `;
 
-const Fab: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
+/**
+ * Fab コンポーネント
+ * @param props プロパティ
+ */
+const Fab: React.FC<Props> = (props) => {
   const {onPressFab, iconName} = props;
   return (
     <ToucableCircle onPress={onPressFab}>

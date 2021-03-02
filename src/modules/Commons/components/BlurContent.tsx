@@ -1,6 +1,9 @@
 import styled from 'styled-components/native';
 import {BlurView} from '@react-native-community/blur';
 
+/**
+ * 半透明要素
+ */
 const BlurContent = styled(BlurView)`
   width: 90%;
   height: 100%;
