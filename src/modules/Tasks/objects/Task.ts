@@ -1,3 +1,6 @@
+/**
+ * タスク
+ */
 type Task = {
   /** ID */
   id: number;

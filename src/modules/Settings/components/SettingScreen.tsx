@@ -12,6 +12,9 @@ import {
   BlueGradation,
 } from '../../../constants';
 
+/**
+ * グラデーション表示用の行
+ */
 const Row = styled.View`
   margin-top: 2%;
   margin-bottom: 2%;
@@ -20,12 +23,18 @@ const Row = styled.View`
   justify-content: space-between;
 `;
 
+/**
+ * ラベル
+ */
 const Label = styled.Text`
   color: #333;
   font-size: 24px;
   font-weight: bold;
 `;
 
+/**
+ * 設定画面
+ */
 const SettingScreen: React.FC = () => {
   const navigation = useNavigation();
   const back = useCallback(() => {

@@ -12,7 +12,7 @@ type Props = {
 };
 
 /**
- * Fabをラップする用のコンポーネント
+ * Fabラップ用コンポーネント
  */
 export const FabWrap = styled.View`
   position: absolute;

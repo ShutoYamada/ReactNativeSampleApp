@@ -6,6 +6,10 @@ import {RootState} from '../../../Store';
 import {loadSetting} from '../../Settings/SettingUtil';
 import {SettingState, SettingActions} from '../../Settings';
 
+/**
+ * 画面共通の最上位コンポーネント
+ * @param props
+ */
 const Main: React.FC = (props) => {
   const {children} = props;
   const dispatch = useDispatch();
