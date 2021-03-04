@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -8,15 +8,24 @@ import {ActiveColor} from '../../../constants';
 import {SettingActions, SettingState} from '..';
 import {saveSetting} from '../SettingUtil';
 
+/**
+ * グラデーション
+ */
 const Gradation = styled(LinearGradient)`
   width: 100%;
   padding-top: 100%;
 `;
 
+/**
+ * グラデーションラップ用
+ */
 const GradationWrap = styled.TouchableOpacity`
   width: 30%;
 `;
 
+/**
+ * 選択状態アイコン
+ */
 const SelectedIcon = styled(Icon)`
   position: absolute;
   top: 2%;
@@ -25,28 +34,41 @@ const SelectedIcon = styled(Icon)`
   color: ${ActiveColor};
 `;
 
+/**
+ * Props
+ */
 type Props = {
+  // カードに表示させる背景色
   colors: string[];
 };
 
+/**
+ * グラデーションカード
+ * @param props
+ */
 const GradationCard: React.FC<Props> = (props) => {
   const {colors} = props;
+  const dispatch = useDispatch();
+  // SettingStateをStoreから取得
   const settingState: SettingState = useSelector(
     (state: RootState) => state?.setting,
   );
-  const selectedBgColor: string[] = useSelector(
-    (state: RootState) => state?.setting?.bgColor,
-  );
-  const dispatch = useDispatch();
+  // 現在選択している背景色
+  const selectedBgColor: string[] = settingState.bgColor;
+  // 現在選択状態かどうか
+  const isSelected: boolean = colors === selectedBgColor;
+  // カードタップ時処理
   const onPress = useCallback(() => {
+    // タップされた色を反映させた新しいSettingStateを作成
     const newSettingState: SettingState = {
       ...settingState,
       bgColor: colors,
     };
+    // SettingStateの最新の状態をStoreに反映
     dispatch(SettingActions.setSetting(newSettingState));
+    // 同時にStorageに保存
     saveSetting(newSettingState);
   }, [settingState, colors, dispatch]);
-  const isSelected: boolean = colors === selectedBgColor;
 
   return (
     <GradationWrap onPress={onPress}>
