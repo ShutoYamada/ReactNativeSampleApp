@@ -2,6 +2,9 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import TaskState, {initialState} from './TaskState';
 import Task from './objects/Task';
 
+/**
+ * タスク機能 Slice
+ */
 const TaskSlice = createSlice({
   name: 'task',
   initialState: initialState,
@@ -35,7 +38,9 @@ const TaskSlice = createSlice({
   },
 });
 
+// Actionを切り出し
 export const TaskActions = TaskSlice.actions;
+// Reducerを切り出し
 export const TaskReducer = TaskSlice.reducer;
 
 export default TaskSlice;

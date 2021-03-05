@@ -1,5 +1,8 @@
 import Task from './objects/Task';
 
+/**
+ * タスク State
+ */
 type TaskState = {
   /** タスク一覧 */
   list: Task[];
@@ -11,6 +14,9 @@ type TaskState = {
   isNewTask: boolean;
 };
 
+/**
+ * State 初期値
+ */
 export const initialState: TaskState = {
   list: [],
   detail: null,
