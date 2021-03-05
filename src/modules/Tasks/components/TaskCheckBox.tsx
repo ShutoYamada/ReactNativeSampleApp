@@ -24,7 +24,9 @@ const CheckIcon = styled(Icon)`
  * Props
  */
 type Props = {
-  isActive: boolean;
+  /** チェック済みかどうか */
+  checked: boolean;
+  /** チェック時処理 */
   onCheck: () => void;
 };
 
@@ -33,8 +35,8 @@ type Props = {
  * @param props プロパティ
  */
 const TaskCheckBox: React.FC<Props> = (props) => {
-  const {isActive, onCheck} = props;
-  const color: string = isActive ? ActiveColor : InactiveColor;
+  const {checked, onCheck} = props;
+  const color: string = checked ? ActiveColor : InactiveColor;
 
   return (
     <CheckWrap style={{borderColor: color}} onPress={onCheck}>

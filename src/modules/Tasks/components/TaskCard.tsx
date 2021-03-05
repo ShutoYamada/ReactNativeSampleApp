@@ -12,7 +12,7 @@ import {
   saveTaskList,
 } from '../TaskUtil';
 import {RootState} from '../../../Store';
-import { Alert } from 'react-native';
+import {Alert} from 'react-native';
 
 const BlurCard = styled(BlurView)`
   width: 100%;
@@ -47,23 +47,23 @@ const TaskCard: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
   }, [dispatch]);
 
   const deleteTask = useCallback(() => {
-    Alert.alert('確認','タスクを削除します。\r\nよろしいですか？', [
+    Alert.alert('確認', 'タスクを削除します。\r\nよろしいですか？', [
       {
         text: 'はい',
         onPress: () => {
-          console.log("OK");
+          console.log('OK');
 
           const deletedList: Task[] = reflectDeleteToList(list, task.id);
           // リストを保存する
           saveTaskList(deletedList);
           // リストをStoreに反映させる
           dispatch(TaskActions.setList(deletedList));
-        }
+        },
       },
       {
         text: 'いいえ',
-      }
-    ])
+      },
+    ]);
   }, []);
 
   const checkTask = useCallback(() => {
@@ -89,7 +89,7 @@ const TaskCard: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
         },
       ]}>
       <BlurCard blurAmount={1} blurType='light'>
-        <TaskCheckBox isActive={task.checked} onCheck={checkTask} />
+        <TaskCheckBox checked={task.checked} onCheck={checkTask} />
         <TaskContent onPress={dispDetail}>
           <Label>{task.name}</Label>
         </TaskContent>
