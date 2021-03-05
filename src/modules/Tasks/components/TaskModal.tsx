@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect} from 'react';
-import {Button, TextInput, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -8,47 +8,51 @@ import {useForm, Controller} from 'react-hook-form';
 import {BlurView} from '@react-native-community/blur';
 import {ErrorColor, InactiveColor} from '../../../constants';
 import {RootState} from '../../../Store';
+import {TaskState} from '..';
 import {Task, TaskActions} from '../index';
 import TaskForm from '../objects/TaskForm';
 import {CommonButton, CommonTextInput} from '../../Commons';
 import {reflectEditToList, saveTaskList} from '../TaskUtil';
 
+/**
+ * ぼかし
+ */
 const BlurContent = styled(BlurView)`
   width: 90%;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
   padding: 6%;
-
   border-width: 0.5px;
   border-radius: 10px;
   border-color: #fff;
   border-bottom-width: 0px;
 `;
 
+/**
+ * ラベル
+ */
 const Label = styled.Text`
   width: 100%;
   font-size: 18px;
   color: ${InactiveColor};
 `;
 
+/**
+ * エラー内容表示テキスト
+ */
 const ErrorText = styled.Text`
   color: ${ErrorColor};
 `;
 
-type Props = {};
-
-const TaskModal: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
+/**
+ * タスクモーダル
+ */
+const TaskModal: React.FC = () => {
   const list: Task[] = useSelector((state: RootState) => state?.task?.list);
-  const dispModal: boolean = useSelector(
-    (state: RootState) => state?.task?.dispModal,
-  );
-  const detail: Task | null = useSelector(
-    (state: RootState) => state?.task?.detail,
-  );
-  const isNewTask: boolean = useSelector(
-    (state: RootState) => state?.task?.isNewTask,
-  );
+  // TaskStateを取得
+  const taskState: TaskState = useSelector((state: RootState) => state?.task);
+  const {detail, dispModal, isNewTask} = taskState;
   const dispatch = useDispatch();
   const closeModal = useCallback(() => dispatch(TaskActions.closeModal()), []);
   const {control, handleSubmit, errors, setValue} = useForm<TaskForm>();
